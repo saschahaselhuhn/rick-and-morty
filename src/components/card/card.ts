@@ -1,9 +1,9 @@
 import { createElement } from "../../utils/createElement";
 
 export function createCard({ imgSrc, name, status, species, origin }) {
-  return createElement("div", {
+  return createElement("article", {
     className: "card",
-    children: [
+    childs: [
       createElement("img", {
         className: `${
           status === "Alive" ? "card__portraitAlive" : "card__portraitDeath"
