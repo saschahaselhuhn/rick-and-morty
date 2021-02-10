@@ -7,7 +7,7 @@
   padding: 20px;
   box-shadow: 0 0 0 rgb(255, 200, 0);
   animation: pulse 2s infinite;
-  max-width: 299px;
+  max-width: 300px;
 }
 
 .card p {
@@ -35,8 +35,10 @@
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border: 5px solid rgb(36, 36, 36);
-  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-  filter: grayscale(100%);
+  filter: blur(5px) grayscale(1);
+}
+.card__portraitDeath:hover {
+  filter: blur(0px) grayscale(0);
 }
 
 .card__info {
@@ -80,4 +82,42 @@
   gap: 2.3em;
   flex-wrap: wrap;
   justify-content: center;
+  max-width: 300px;
+}
+
+.bigContainer {
+  display: flex;
+
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 300px;
+}
+.filterInput {
+  width: 300px;
+  padding: 10px 30px 10px 30px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  background-color: orange;
+  color: black;
+  font-size: 16px;
+  outline: none;
+  text-align: center;
+}
+
+.randomButton {
+  padding: 10px 30px 10px 30px;
+  border-radius: 20px;
+  background-color: orange;
+  color: black;
+  font-size: 16px;
+  outline: none;
+  margin-top: 20px;
+}
+
+.randomButton:hover {
+  background-color: rgb(255, 194, 80);
+}
+
+.randomButton:focus {
+  border: none;
 }

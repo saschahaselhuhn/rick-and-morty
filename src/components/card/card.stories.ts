@@ -8,35 +8,33 @@ export default {
   parameters: { layout: "centered" },
 };
 
-// export const Rick = () =>
-//   createCard({
-//     imgSrc: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-//     name: "Rick Sanchenz",
-//     status: "Alive",
-//     species: "Human",
-//     origin: { name: "Earth (C-137)" },
-//   });
-// export const Morty = () =>
-//   createCard({
-//     imgSrc: "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
-//     name: "Morty Smith",
-//     status: "Alive",
-//     species: "Human",
-//     origin: { name: "Earth (C-137)" },
-//   });
-//   export const CrabSpider = () =>
-//   createCard({
-//     imgSrc: "https://rickandmortyapi.com/api/character/avatar/79.jpeg",
-//   name: "Crab Spider",
-//   status: "Alive",
-//   species: "Alien",
-//   origin: { name: "Hideout Planet"},
-//   });
+export const Rick = () =>
+  createCard({
+    imgSrc: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+    name: "Rick Sanchenz",
+    status: "Alive",
+    species: "Human",
+    origin: { name: "Earth (C-137)" },
+  });
 
-//________________________________________________________________________________________________________________________________________:
+export const Morty = () =>
+  createCard({
+    imgSrc: "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
+    name: "Morty Smith",
+    status: "Dead",
+    species: "Human",
+    origin: { name: "Earth (C-137)" },
+  });
 
 export const Multiple = () => {
   const characters = [
+    {
+      imgSrc: "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
+      name: "Morty Smith",
+      status: "Dead",
+      species: "Human",
+      origin: { name: "Earth (C-137)" },
+    },
     {
       imgSrc: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
       name: "Rick Sanchenz",
@@ -45,24 +43,15 @@ export const Multiple = () => {
       origin: { name: "Earth (C-137)" },
     },
     {
-      imgSrc: "https://rickandmortyapi.com/api/character/avatar/2.jpeg",
-      name: "Morty Smith",
-      status: "Alive",
-      species: "Human",
-      origin: { name: "Earth (C-137)" },
-    },
-    {
-      imgSrc: "https://rickandmortyapi.com/api/character/avatar/79.jpeg",
-      name: "Crab Spider",
-      status: "Alive",
-      species: "Alien",
-      origin: { name: "Hideout Planet" },
+      imgSrc: "https://rickandmortyapi.com/api/character/avatar/25.jpeg",
+      name: "Armothy",
+      status: "Dead",
+      species: "unknown",
+      origin: { name: "Post-Apocalyptic Earth" },
     },
   ];
 
-  //_________________________________________________________________________________________________________________________________________:
-
-  const container = createElement("article", {
+  const container = createElement("div", {
     className: "container",
     childs: characters.map((character) => createCard(character)),
   });
@@ -70,20 +59,18 @@ export const Multiple = () => {
   return container;
 };
 
-//_________________________________________________________________________________________________________________________________________:
-
 export const CharacterFromAPI = (args, { loaded: { character } }) => {
   return createCard(character);
 };
 
 CharacterFromAPI.loaders = [
   async () => ({
-    character: await getCharacter(7),
+    character: await getCharacter(666),
   }),
 ];
 
 export const CharactersFromAPI = (args, { loaded: { characters } }) => {
-  const container = createElement("article", {
+  const container = createElement("div", {
     className: "container",
     childs: characters.map((character) => createCard(character)),
   });
@@ -95,24 +82,62 @@ CharactersFromAPI.loaders = [
     characters: await getCharacters(),
   }),
 ];
-//__________________________________________________________________________________________________________________________________________:
+
+//=================================================================
 export const RandomCharacter = () => {
   const randomButton = createElement("button", {
-    innerText: "Load random character",
+    className: "randomButton",
+    innerText: "Randomizer",
     onclick: async () => {
       const randomNumber = Math.floor(Math.random() * 670) + 1;
 
       const randomCharacter = await getCharacter(randomNumber);
-      container.append(createCard(randomCharacter));
+      characterContainer.innerHTML = "";
+      characterContainer.append(createCard(randomCharacter));
     },
-    // onclick: async function (params:type) {
-
-    // }
+  });
+  const characterContainer = createElement("div", {
+    className: "Container",
   });
 
   const container = createElement("div", {
-    className: "container",
-    childs: [randomButton],
+    className: "bigContainer",
+    childs: [characterContainer, randomButton],
   });
   return container;
 };
+//=================================================================
+
+export const CharactersFromAPIWithFilter = (
+  args,
+  { loaded: { characters } }
+) => {
+  const input = createElement("input", {
+    className: "filterInput",
+    placeholder: "Search here",
+    onchange: async () => {
+      const newCharacters = await getCharacters(input.value);
+      const newCards = newCharacters.map((character) => createCard(character));
+      characterContainer.innerHTML = "";
+      characterContainer.append(...newCards);
+    },
+  });
+
+  const characterContainer = createElement("div", {
+    className: "container",
+    childs: characters.map((character) => createCard(character)),
+  });
+
+  const container = createElement("div", {
+    className: "bigContainer",
+    childs: [input, characterContainer],
+  });
+
+  return container;
+};
+
+CharactersFromAPIWithFilter.loaders = [
+  async () => ({
+    characters: await getCharacters(),
+  }),
+];
