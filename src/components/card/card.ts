@@ -1,4 +1,4 @@
-import { createElement } from "../../utils/createElement";
+import { createElement } from "../../utils/createElements";
 
 export function createCard({ imgSrc, name, status, species, origin }) {
   return createElement("article", {
