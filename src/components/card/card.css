@@ -7,8 +7,7 @@
   padding: 20px;
   box-shadow: 0 0 0 rgb(255, 200, 0);
   animation: pulse 2s infinite;
-
-  max-width: 300px;
+  max-width: 299px;
 }
 
 .card p {
