@@ -15,6 +15,7 @@ export const Rick = () =>
     status: "Alive",
     species: "Human",
     origin: { name: "Earth (C-137)" },
+    location: { name: "Lorem Ipsum" },
   });
 
 export const Morty = () =>
@@ -24,6 +25,7 @@ export const Morty = () =>
     status: "Dead",
     species: "Human",
     origin: { name: "Earth (C-137)" },
+    location: { name: "Lorem Ipsum" },
   });
 
 export const Multiple = () => {
@@ -34,6 +36,7 @@ export const Multiple = () => {
       status: "Dead",
       species: "Human",
       origin: { name: "Earth (C-137)" },
+      location: { name: "Lorem Ipsum" },
     },
     {
       imgSrc: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
@@ -41,6 +44,7 @@ export const Multiple = () => {
       status: "Alive",
       species: "Human",
       origin: { name: "Earth (C-137)" },
+      location: { name: "Lorem Ipsum" },
     },
     {
       imgSrc: "https://rickandmortyapi.com/api/character/avatar/25.jpeg",
@@ -48,6 +52,7 @@ export const Multiple = () => {
       status: "Dead",
       species: "unknown",
       origin: { name: "Post-Apocalyptic Earth" },
+      location: { name: "Lorem Ipsum" },
     },
   ];
 
