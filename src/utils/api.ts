@@ -9,7 +9,10 @@ export type APICharacter = {
     name: string;
     url: string;
   };
-
+  location: {
+    name: string;
+    url: string;
+  };
   image: string;
   episode: string[];
   url: string;
@@ -34,6 +37,9 @@ export type Character = {
   origin: {
     name: string;
   };
+  location: {
+    name: string;
+  };
 };
 
 function convertToCharacter(apiCharacter: APICharacter): Character {
@@ -44,6 +50,9 @@ function convertToCharacter(apiCharacter: APICharacter): Character {
     species: apiCharacter.species,
     origin: {
       name: apiCharacter.origin.name,
+    },
+    location: {
+      name: apiCharacter.location.name,
     },
   };
 }
@@ -60,6 +69,9 @@ export async function getCharacter(id: number) {
       status: "Dead",
       species: "Human",
       origin: {
+        name: "Internet",
+      },
+      location: {
         name: "Internet",
       },
     };
