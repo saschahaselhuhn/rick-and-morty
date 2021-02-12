@@ -57,8 +57,8 @@ export function createCard({
                 className: "card",
                 childs: [
                   createElement("p", {
-                    className: "card__origin",
-                    innerText: "Location: " + location.name,
+                    className: "card__location",
+                    innerHTML: "<p>Location:</p> " + location.name,
                   }),
                 ],
               }),
